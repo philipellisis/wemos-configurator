@@ -27,7 +27,7 @@ End Class
 Public Interface BoardInterface
     Event BoardChanged As EventHandler(Of BoardChangedArgs)
     Event BoardDisconnected As EventHandler(Of BoardCompletedArgs)
-    Sub connect(port As String)
+    Sub connect(port As String, type As String)
 
     Sub disconnect()
 

@@ -22,6 +22,7 @@ Partial Class MainWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
         Me.btnConnect = New System.Windows.Forms.Button()
         Me.btnOutputs = New System.Windows.Forms.Button()
@@ -37,6 +38,9 @@ Partial Class MainWindow
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cbColor = New System.Windows.Forms.ComboBox()
+        Me.cbBrightness = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.tmrComPort = New System.Windows.Forms.Timer(Me.components)
         Me.gbMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,6 +69,8 @@ Partial Class MainWindow
         '
         'gbMenu
         '
+        Me.gbMenu.Controls.Add(Me.Label4)
+        Me.gbMenu.Controls.Add(Me.cbBrightness)
         Me.gbMenu.Controls.Add(Me.cbColor)
         Me.gbMenu.Controls.Add(Me.Label3)
         Me.gbMenu.Controls.Add(Me.Label2)
@@ -180,7 +186,7 @@ Partial Class MainWindow
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(361, 54)
+        Me.Label3.Location = New System.Drawing.Point(348, 54)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(65, 29)
         Me.Label3.TabIndex = 29
@@ -192,10 +198,35 @@ Partial Class MainWindow
         Me.cbColor.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbColor.FormattingEnabled = True
         Me.cbColor.Items.AddRange(New Object() {"Red", "Blue", "Green", "White", "Off"})
-        Me.cbColor.Location = New System.Drawing.Point(366, 97)
+        Me.cbColor.Location = New System.Drawing.Point(353, 97)
         Me.cbColor.Name = "cbColor"
         Me.cbColor.Size = New System.Drawing.Size(103, 33)
         Me.cbColor.TabIndex = 30
+        '
+        'cbBrightness
+        '
+        Me.cbBrightness.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbBrightness.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbBrightness.FormattingEnabled = True
+        Me.cbBrightness.Items.AddRange(New Object() {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
+        Me.cbBrightness.Location = New System.Drawing.Point(490, 97)
+        Me.cbBrightness.Name = "cbBrightness"
+        Me.cbBrightness.Size = New System.Drawing.Size(103, 33)
+        Me.cbBrightness.TabIndex = 31
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(485, 54)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(120, 29)
+        Me.Label4.TabIndex = 32
+        Me.Label4.Text = "Brightness"
+        '
+        'tmrComPort
+        '
+        Me.tmrComPort.Interval = 5000
         '
         'MainWindow
         '
@@ -235,4 +266,7 @@ Partial Class MainWindow
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents cbChannel As ComboBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents cbBrightness As ComboBox
+    Friend WithEvents tmrComPort As Timer
 End Class

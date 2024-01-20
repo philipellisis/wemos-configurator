@@ -9,29 +9,29 @@ Public Class CSDBoard
 
 
 
-    Public Sub connect(port As String) Implements BoardInterface.connect
+    Public Sub connect(port As String, type As String) Implements BoardInterface.connect
 
         CSDConnection = New RS232(port)
-            Try
-            CSDConnection.open()
+        Try
+            CSDConnection.open(type)
             Thread.Sleep(100)
             sendRaw(System.Text.Encoding.Unicode.GetBytes("V"))
             Thread.Sleep(100)
             'CSDConnection.send({0, 251, 0, 0, 0, 0, 0, 0, 0})
             Dim retryCount = 0
-                Do While retryCount < 5
-                    Dim result As Byte() = CSDConnection.ReadBytes()
-                    If result.Length > 0 Then
-                        'CSDConnection.ReceiveDataEvents = True
-                        Return
-                    End If
-                    retryCount += 1
-                    Thread.Sleep(100)
-                Loop
+            Do While retryCount < 5
+                Dim result As Byte() = CSDConnection.ReadBytes()
+                If result.Length > 0 Then
+                    'CSDConnection.ReceiveDataEvents = True
+                    Return
+                End If
+                retryCount += 1
+                Thread.Sleep(100)
+            Loop
 
-            Catch ex As Exception
-                CSDConnection.close()
-            End Try
+        Catch ex As Exception
+            CSDConnection.close()
+        End Try
 
 
         Throw New Exception("Unable to connect to any board")

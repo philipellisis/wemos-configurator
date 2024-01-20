@@ -9,6 +9,8 @@ Imports System.Threading
 Imports System.IO.Compression
 
 Public Class MainWindow
+
+    Private currentComPorts = My.Computer.Ports.SerialPortNames
     Private OutputsWindow As Outputs
 
     Private version As Integer() = {1, 13, 0}
@@ -16,10 +18,14 @@ Public Class MainWindow
     Private Board As BoardInterface
     Private connected As Boolean
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        For Each sp As String In My.Computer.Ports.SerialPortNames
+        For Each sp As String In currentComPorts
             cbComPort.Items.Add(sp)
             cbComPort.SelectedIndex = 0
         Next
+        cbBrightness.SelectedIndex = 0
+        cbChannel.SelectedIndex = 0
+        cbColor.SelectedIndex = 0
+        tmrComPort.Enabled = True
 
     End Sub
 
@@ -39,7 +45,7 @@ Public Class MainWindow
                 Else
                     Board = New CSDBoard
                 End If
-                Board.connect(cbComPort.SelectedItem)
+                Board.connect(cbComPort.SelectedItem, cmbVersion.SelectedItem)
                 gbMenu.Enabled = True
                 connected = True
                 btnConnect.Text = "Disconnect"
@@ -57,22 +63,24 @@ Public Class MainWindow
 
     Private Sub btnOutputs_Click(sender As Object, e As EventArgs) Handles btnOutputs.Click
         Dim outputArray(3071) As Byte
+        Dim brightness As Byte
+        brightness = CInt(cbBrightness.SelectedItem) * 2.55
 
         If cbColor.SelectedItem = "Red" Then
             For i As Integer = 0 To 3071 Step 3
-                outputArray(i) = 55
+                outputArray(i) = brightness
             Next
         ElseIf cbColor.SelectedItem = "Green" Then
             For i As Integer = 1 To 3071 Step 3
-                outputArray(i) = 55
+                outputArray(i) = brightness
             Next
         ElseIf cbColor.SelectedItem = "Blue" Then
             For i As Integer = 2 To 3071 Step 3
-                outputArray(i) = 55
+                outputArray(i) = brightness
             Next
         ElseIf cbColor.SelectedItem = "White" Then
             For i As Integer = 0 To 3071 Step 1
-                outputArray(i) = 55
+                outputArray(i) = brightness
             Next
         ElseIf cbColor.SelectedItem = "Off" Then
             For i As Integer = 0 To 3071 Step 1
@@ -82,7 +90,7 @@ Public Class MainWindow
 
 
 
-        Board.sendRaw({82, cbChannel.SelectedIndex * 2, 0, 4, 0})
+        Board.sendRaw({82, cbChannel.SelectedIndex * 4, 0, 4, 0})
         Board.sendRaw(outputArray)
         Board.getBytes()
         Dim CommandData As Byte() = New Byte() {AscW("O"c)}
@@ -253,5 +261,29 @@ Public Class MainWindow
     Private Sub cmbVersion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbVersion.SelectedIndexChanged
         btnConnect.Enabled = True
         btnUpdateFirmware.Enabled = True
+    End Sub
+
+    Private Sub tmrComPort_Tick(sender As Object, e As EventArgs) Handles tmrComPort.Tick
+        If Not connected Then
+            Dim names = My.Computer.Ports.SerialPortNames
+            Dim update = False
+            For Each sp As String In names
+                If Not currentComPorts.Contains(sp) Then
+                    update = True
+                End If
+            Next
+            If update Then
+                currentComPorts = names
+                cbComPort.Items.Clear()
+
+                For Each sp As String In currentComPorts
+                    cbComPort.Items.Add(sp)
+                    cbComPort.SelectedIndex = 0
+                Next
+            End If
+        End If
+
+
+
     End Sub
 End Class

@@ -39,15 +39,17 @@ Public Class RS232
             _ReceiveDataEvents = value
         End Set
     End Property
-    Public Sub open()
+    Public Sub open(type As String)
         objSerial.BaudRate = 2000000
         objSerial.Handshake = IO.Ports.Handshake.None
 
         objSerial.ReadTimeout = 500
         objSerial.Open()
 
+        If type = "Wemos S2 Mini" Then
+            objSerial.DtrEnable = True
+        End If
 
-        objSerial.DtrEnable = True
     End Sub
 
     Public Sub open1200()

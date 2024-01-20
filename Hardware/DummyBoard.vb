@@ -13,7 +13,7 @@ Public Class DummyBoard
     Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
 
 
-    Public Sub connect(port As String) Implements BoardInterface.connect
+    Public Sub connect(port As String, type As String) Implements BoardInterface.connect
 
     End Sub
     Public Sub disconnect() Implements BoardInterface.disconnect
