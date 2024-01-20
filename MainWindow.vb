@@ -112,14 +112,21 @@ Public Class MainWindow
     Private Sub btnUpdateFirmware_Click(sender As Object, e As EventArgs) Handles btnUpdateFirmware.Click
         'AVRResources.avrdude
 
-        If MessageBox.Show("Ensure you only have one CSD board connected before proceeding to install or you have the correct COM port selected, this will install the latest firmware. Click OK to continue", "Warning", MessageBoxButtons.OKCancel,
-            Nothing, MessageBoxDefaultButton.Button1) = DialogResult.OK Then
-        Else
-            Exit Sub
-        End If
+
         If cmbVersion.SelectedItem = "Wemos D1 Mini" Then
+            If MessageBox.Show("this will install the latest firmware. During connection, you will likely need to push the 'reset' button on the device. Click OK to continue", "Warning", MessageBoxButtons.OKCancel,
+            Nothing, MessageBoxDefaultButton.Button1) = DialogResult.OK Then
+            Else
+                Exit Sub
+            End If
+
             updateD1Firmware()
         Else
+            If MessageBox.Show("this will install the latest firmware. Before proceeding, ensure it is in program mode (Hold '0' button while pressing 'reset', and a new COM port will be created used for uploading firmware) Click OK to continue", "Warning", MessageBoxButtons.OKCancel,
+            Nothing, MessageBoxDefaultButton.Button1) = DialogResult.OK Then
+            Else
+                Exit Sub
+            End If
             updateS2Firmware()
         End If
 
@@ -128,19 +135,23 @@ Public Class MainWindow
     End Sub
     Private Sub updateS2Firmware()
         Try
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "esptool.exe"))
+            If Not Directory.Exists(System.IO.Path.Combine(Application.StartupPath(), "csd_temp")) Then
+                Directory.CreateDirectory(System.IO.Path.Combine(Application.StartupPath(), "csd_temp"))
+            End If
+
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "esptool.exe"))
                 output.Write(AVRResources.esptool, 0, AVRResources.esptool.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "boot_app0.bin"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "boot_app0.bin"))
                 output.Write(AVRResources.boot_app0, 0, AVRResources.boot_app0.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "WEMOS_Addressable.ino.partitions.bin"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "WEMOS_Addressable.ino.partitions.bin"))
                 output.Write(AVRResources.WEMOS_Addressable_ino_partitions, 0, AVRResources.WEMOS_Addressable_ino_partitions.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "WEMOS_Addressable_s2.ino.bin"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "WEMOS_Addressable_s2.ino.bin"))
                 output.Write(AVRResources.WEMOS_Addressable_s2_ino, 0, AVRResources.WEMOS_Addressable_s2_ino.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "WEMOS_Addressable.ino.bootloader.bin"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "WEMOS_Addressable.ino.bootloader.bin"))
                 output.Write(AVRResources.WEMOS_Addressable_ino_bootloader, 0, AVRResources.WEMOS_Addressable_ino_bootloader.Length)
             End Using
 
@@ -157,8 +168,8 @@ Public Class MainWindow
             '    Exit Sub
             'End If
             Dim pHelp As New ProcessStartInfo
-            pHelp.FileName = ".\esptool.exe"
-            pHelp.Arguments = "--chip esp32s2 --port " & cbComPort.SelectedItem & " --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 ./WEMOS_Addressable.ino.bootloader.bin 0x8000 ./WEMOS_Addressable.ino.partitions.bin 0xe000 ./boot_app0.bin 0x10000 ./WEMOS_Addressable_s2.ino.bin"
+            pHelp.FileName = ".\csd_temp\esptool.exe"
+            pHelp.Arguments = "--chip esp32s2 --port " & cbComPort.SelectedItem & " --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 ./csd_temp/WEMOS_Addressable.ino.bootloader.bin 0x8000 ./csd_temp/WEMOS_Addressable.ino.partitions.bin 0xe000 ./csd_temp/boot_app0.bin 0x10000 ./csd_temp/WEMOS_Addressable_s2.ino.bin"
             'pHelp.Arguments = "-Cavrdude.conf -v -patmega32u4 -cavr109 -P" & port & " -b57600 -D -Uflash:w:.\joystick.ino.hex:i"
             pHelp.UseShellExecute = True
             pHelp.WindowStyle = ProcessWindowStyle.Normal
@@ -180,17 +191,20 @@ Public Class MainWindow
     End Sub
     Private Sub updateD1Firmware()
         Try
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "python3Full.zip"))
+            If Not Directory.Exists(System.IO.Path.Combine(Application.StartupPath(), "csd_temp")) Then
+                Directory.CreateDirectory(System.IO.Path.Combine(Application.StartupPath(), "csd_temp"))
+            End If
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "python3Full.zip"))
                 output.Write(AVRResources.python3Full, 0, AVRResources.python3Full.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "build.zip"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "build.zip"))
                 output.Write(AVRResources.build, 0, AVRResources.build.Length)
             End Using
-            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "WEMOS_Addressable.ino.bin"))
+            Using output As Stream = File.OpenWrite(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "WEMOS_Addressable.ino.bin"))
                 output.Write(AVRResources.WEMOS_Addressable_ino, 0, AVRResources.WEMOS_Addressable_ino.Length)
             End Using
-            UnzipFile(System.IO.Path.Combine(Application.StartupPath(), "python3Full.zip"))
-            UnzipFile(System.IO.Path.Combine(Application.StartupPath(), "build.zip"))
+            UnzipFile(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "python3Full.zip"))
+            UnzipFile(System.IO.Path.Combine(Application.StartupPath(), "csd_temp", "build.zip"))
 
 
             If cbSimulation.Checked = True Then
@@ -204,8 +218,8 @@ Public Class MainWindow
             '    Exit Sub
             'End If
             Dim pHelp As New ProcessStartInfo
-            pHelp.FileName = ".\python3.exe"
-            pHelp.Arguments = "-I ./upload.py --chip esp8266 --port " & cbComPort.SelectedItem & " --baud 921600 --before default_reset --after hard_reset write_flash 0x0 ./WEMOS_Addressable.ino.bin"
+            pHelp.FileName = ".\csd_temp\python3.exe"
+            pHelp.Arguments = "-I ./csd_temp/upload.py --chip esp8266 --port " & cbComPort.SelectedItem & " --baud 921600 --before default_reset --after hard_reset write_flash 0x0 ./csd_temp/WEMOS_Addressable.ino.bin"
             'pHelp.Arguments = "-Cavrdude.conf -v -patmega32u4 -cavr109 -P" & port & " -b57600 -D -Uflash:w:.\joystick.ino.hex:i"
             pHelp.UseShellExecute = True
             pHelp.WindowStyle = ProcessWindowStyle.Normal
@@ -227,7 +241,7 @@ Public Class MainWindow
     End Sub
 
     Sub UnzipFile(zipPath As String)
-        Dim extractPath As String = Directory.GetCurrentDirectory()
+        Dim extractPath As String = System.IO.Path.Combine(Application.StartupPath(), "csd_temp")
 
         If File.Exists(zipPath) Then
             Using archive As ZipArchive = ZipFile.OpenRead(zipPath)
