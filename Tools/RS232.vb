@@ -2,6 +2,7 @@
 Imports System.CodeDom.Compiler
 Imports System.Runtime.Remoting.Contexts
 Imports System.Text
+Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Microsoft.SqlServer.Server
 
@@ -67,10 +68,13 @@ Public Class RS232
     End Function
 
     Public Function ReadBytes() As Byte()
+        Thread.Sleep(100)
         Dim byteCount As Integer = objSerial.BytesToRead
         If byteCount > 0 Then
             Dim buffer(byteCount - 1) As Byte
             objSerial.Read(buffer, 0, byteCount)
+            Console.WriteLine(BytesToString(buffer))
+            Console.WriteLine(ByteArrayToASCIIString(buffer))
             Return buffer
         Else
             Return New Byte() {}

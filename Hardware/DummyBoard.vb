@@ -53,7 +53,7 @@ Public Class DummyBoard
 
     End Sub
 
-    Public Function setBootloader(port As String) As String Implements BoardInterface.setBootloader
-        Return "COM1"
+    Public Function getBytes() As Byte() Implements BoardInterface.getBytes
+        Return {1}
     End Function
 End Class

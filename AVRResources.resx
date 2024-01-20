@@ -118,13 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="boot_app0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\boot_app0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="build" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\build.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="esptool" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\esptool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="python3Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\python3Full.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="WEMOS_Addressable_ino" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\WEMOS_Addressable.ino.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WEMOS_Addressable_ino_bootloader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\WEMOS_Addressable.ino.bootloader.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WEMOS_Addressable_ino_partitions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\WEMOS_Addressable.ino.partitions.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WEMOS_Addressable_s2_ino" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\WEMOS_Addressable_s2.ino.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

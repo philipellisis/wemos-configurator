@@ -137,7 +137,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tools\FormUtils.vb" />
-    <Compile Include="Tools\KeyboardEventMapper.vb" />
     <Compile Include="Tools\RS232.vb" />
     <Compile Include="Tools\ThreadExtensions.vb" />
   </ItemGroup>
@@ -175,16 +174,21 @@
     </None>
     <None Include="App.config" />
     <None Include="resources\avrdude.conf" />
+    <None Include="resources\boot_app0.bin" />
     <None Include="resources\build.zip" />
     <None Include="resources\PinOne.ino.hex" />
     <None Include="resources\python3Full.zip" />
     <None Include="resources\WEMOS_Addressable.ino.bin" />
+    <None Include="resources\WEMOS_Addressable.ino.bootloader.bin" />
+    <None Include="resources\WEMOS_Addressable.ino.partitions.bin" />
+    <None Include="resources\WEMOS_Addressable_s2.ino.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\avrdude.exe" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClevelandSoftwareDesignLogo.ico" />
+    <None Include="resources\esptool.exe" />
     <None Include="resources\upload.py" />
   </ItemGroup>
   <ItemGroup>

@@ -67,9 +67,29 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Byte[].
         '''</summary>
+        Friend Shared ReadOnly Property boot_app0() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("boot_app0", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
         Friend Shared ReadOnly Property build() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("build", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend Shared ReadOnly Property esptool() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("esptool", resourceCulture)
                 Return CType(obj,Byte())
             End Get
         End Property
@@ -90,6 +110,36 @@ Namespace My.Resources
         Friend Shared ReadOnly Property WEMOS_Addressable_ino() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("WEMOS_Addressable_ino", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend Shared ReadOnly Property WEMOS_Addressable_ino_bootloader() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("WEMOS_Addressable_ino_bootloader", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend Shared ReadOnly Property WEMOS_Addressable_ino_partitions() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("WEMOS_Addressable_ino_partitions", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend Shared ReadOnly Property WEMOS_Addressable_s2_ino() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("WEMOS_Addressable_s2_ino", resourceCulture)
                 Return CType(obj,Byte())
             End Get
         End Property

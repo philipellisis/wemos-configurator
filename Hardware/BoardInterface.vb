@@ -31,8 +31,8 @@ Public Interface BoardInterface
 
     Sub disconnect()
 
-    Function setBootloader(port As String) As String
-
     Sub sendRaw(value As Byte())
+
+    Function getBytes() As Byte()
 
 End Interface
