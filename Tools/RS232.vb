@@ -43,7 +43,7 @@ Public Class RS232
         objSerial.BaudRate = 2000000
         objSerial.Handshake = IO.Ports.Handshake.None
 
-        objSerial.ReadTimeout = 500
+        objSerial.ReadTimeout = 5000
         objSerial.Open()
 
         If type = "Wemos S2 Mini" Then
@@ -56,7 +56,7 @@ Public Class RS232
         objSerial.BaudRate = 1200
         objSerial.Handshake = IO.Ports.Handshake.None
 
-        objSerial.ReadTimeout = 500
+        objSerial.ReadTimeout = 5000
         objSerial.Open()
         objSerial.NewLine = vbLf
     End Sub
@@ -69,18 +69,32 @@ Public Class RS232
         Return objSerial.ReadExisting()
     End Function
 
-    Public Function ReadBytes() As Byte()
-        Thread.Sleep(100)
-        Dim byteCount As Integer = objSerial.BytesToRead
-        If byteCount > 0 Then
-            Dim buffer(byteCount - 1) As Byte
-            objSerial.Read(buffer, 0, byteCount)
-            Console.WriteLine(BytesToString(buffer))
-            Console.WriteLine(ByteArrayToASCIIString(buffer))
-            Return buffer
+    Public Function ReadBytes(numberBytes As Integer) As Byte()
+        If numberBytes = 0 Then
+            Thread.Sleep(100)
+            Dim byteCount As Integer = objSerial.BytesToRead
+            If byteCount > 0 Then
+                Dim buffer(byteCount - 1) As Byte
+                objSerial.Read(buffer, 0, byteCount)
+                Console.WriteLine(BytesToString(buffer))
+                Console.WriteLine(ByteArrayToASCIIString(buffer))
+                Return buffer
+            Else
+                Return New Byte() {}
+            End If
         Else
-            Return New Byte() {}
+            Dim byteCount As Integer = numberBytes
+            If byteCount > 0 Then
+                Dim buffer(byteCount - 1) As Byte
+                objSerial.Read(buffer, 0, byteCount)
+                Console.WriteLine(BytesToString(buffer))
+                Console.WriteLine(ByteArrayToASCIIString(buffer))
+                Return buffer
+            Else
+                Return New Byte() {}
+            End If
         End If
+
     End Function
     Public Sub send(bytes() As Byte)
         Dim sendStr As String = ""
@@ -119,7 +133,7 @@ Public Class RS232
 
     Private lineData As StringBuilder = New StringBuilder
     Private Sub objSerial_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) 'Handles objSerial.DataReceived
-        Dim bytes As Byte() = ReadBytes()
+        Dim bytes As Byte() = ReadBytes(1)
         Console.WriteLine(BytesToString(bytes))
         Console.WriteLine(ByteArrayToASCIIString(bytes))
         sendRS232Changed(New RS232ChangedArgs(bytes))

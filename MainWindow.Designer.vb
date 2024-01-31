@@ -27,6 +27,13 @@ Partial Class MainWindow
         Me.btnConnect = New System.Windows.Forms.Button()
         Me.btnOutputs = New System.Windows.Forms.Button()
         Me.gbMenu = New System.Windows.Forms.GroupBox()
+        Me.btnChannelLength = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cbBrightness = New System.Windows.Forms.ComboBox()
+        Me.cbColor = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cbChannel = New System.Windows.Forms.ComboBox()
         Me.cbSimulation = New System.Windows.Forms.CheckBox()
         Me.btnUpdateFirmware = New System.Windows.Forms.Button()
         Me.cbComPort = New System.Windows.Forms.ComboBox()
@@ -34,13 +41,25 @@ Partial Class MainWindow
         Me.btnAbout = New System.Windows.Forms.Button()
         Me.cmbVersion = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cbChannel = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cbColor = New System.Windows.Forms.ComboBox()
-        Me.cbBrightness = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.tmrComPort = New System.Windows.Forms.Timer(Me.components)
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnTest = New System.Windows.Forms.Button()
         Me.gbMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,6 +88,25 @@ Partial Class MainWindow
         '
         'gbMenu
         '
+        Me.gbMenu.Controls.Add(Me.btnTest)
+        Me.gbMenu.Controls.Add(Me.Label13)
+        Me.gbMenu.Controls.Add(Me.Label12)
+        Me.gbMenu.Controls.Add(Me.Label11)
+        Me.gbMenu.Controls.Add(Me.Label10)
+        Me.gbMenu.Controls.Add(Me.Label9)
+        Me.gbMenu.Controls.Add(Me.Label8)
+        Me.gbMenu.Controls.Add(Me.Label7)
+        Me.gbMenu.Controls.Add(Me.Label6)
+        Me.gbMenu.Controls.Add(Me.Label5)
+        Me.gbMenu.Controls.Add(Me.TextBox8)
+        Me.gbMenu.Controls.Add(Me.TextBox7)
+        Me.gbMenu.Controls.Add(Me.TextBox6)
+        Me.gbMenu.Controls.Add(Me.TextBox5)
+        Me.gbMenu.Controls.Add(Me.TextBox4)
+        Me.gbMenu.Controls.Add(Me.TextBox3)
+        Me.gbMenu.Controls.Add(Me.TextBox2)
+        Me.gbMenu.Controls.Add(Me.TextBox1)
+        Me.gbMenu.Controls.Add(Me.btnChannelLength)
         Me.gbMenu.Controls.Add(Me.Label4)
         Me.gbMenu.Controls.Add(Me.cbBrightness)
         Me.gbMenu.Controls.Add(Me.cbColor)
@@ -84,6 +122,80 @@ Partial Class MainWindow
         Me.gbMenu.TabIndex = 8
         Me.gbMenu.TabStop = False
         Me.gbMenu.Text = "Menu"
+        '
+        'btnChannelLength
+        '
+        Me.btnChannelLength.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnChannelLength.Location = New System.Drawing.Point(13, 211)
+        Me.btnChannelLength.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnChannelLength.Name = "btnChannelLength"
+        Me.btnChannelLength.Size = New System.Drawing.Size(188, 76)
+        Me.btnChannelLength.TabIndex = 33
+        Me.btnChannelLength.Text = "Send Output Data"
+        Me.btnChannelLength.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(485, 54)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(120, 29)
+        Me.Label4.TabIndex = 32
+        Me.Label4.Text = "Brightness"
+        '
+        'cbBrightness
+        '
+        Me.cbBrightness.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbBrightness.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbBrightness.FormattingEnabled = True
+        Me.cbBrightness.Items.AddRange(New Object() {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
+        Me.cbBrightness.Location = New System.Drawing.Point(490, 97)
+        Me.cbBrightness.Name = "cbBrightness"
+        Me.cbBrightness.Size = New System.Drawing.Size(103, 33)
+        Me.cbBrightness.TabIndex = 31
+        '
+        'cbColor
+        '
+        Me.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbColor.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbColor.FormattingEnabled = True
+        Me.cbColor.Items.AddRange(New Object() {"Red", "Blue", "Green", "White", "Off"})
+        Me.cbColor.Location = New System.Drawing.Point(353, 97)
+        Me.cbColor.Name = "cbColor"
+        Me.cbColor.Size = New System.Drawing.Size(103, 33)
+        Me.cbColor.TabIndex = 30
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(348, 54)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(65, 29)
+        Me.Label3.TabIndex = 29
+        Me.Label3.Text = "Color"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(209, 54)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(95, 29)
+        Me.Label2.TabIndex = 28
+        Me.Label2.Text = "Channel"
+        '
+        'cbChannel
+        '
+        Me.cbChannel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbChannel.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbChannel.FormattingEnabled = True
+        Me.cbChannel.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8"})
+        Me.cbChannel.Location = New System.Drawing.Point(214, 97)
+        Me.cbChannel.Name = "cbChannel"
+        Me.cbChannel.Size = New System.Drawing.Size(103, 33)
+        Me.cbChannel.TabIndex = 27
         '
         'cbSimulation
         '
@@ -161,72 +273,174 @@ Partial Class MainWindow
         Me.Label1.TabIndex = 27
         Me.Label1.Text = "Version"
         '
-        'cbChannel
-        '
-        Me.cbChannel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbChannel.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbChannel.FormattingEnabled = True
-        Me.cbChannel.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8"})
-        Me.cbChannel.Location = New System.Drawing.Point(214, 97)
-        Me.cbChannel.Name = "cbChannel"
-        Me.cbChannel.Size = New System.Drawing.Size(103, 33)
-        Me.cbChannel.TabIndex = 27
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(209, 54)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 29)
-        Me.Label2.TabIndex = 28
-        Me.Label2.Text = "Channel"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(348, 54)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(65, 29)
-        Me.Label3.TabIndex = 29
-        Me.Label3.Text = "Color"
-        '
-        'cbColor
-        '
-        Me.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbColor.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbColor.FormattingEnabled = True
-        Me.cbColor.Items.AddRange(New Object() {"Red", "Blue", "Green", "White", "Off"})
-        Me.cbColor.Location = New System.Drawing.Point(353, 97)
-        Me.cbColor.Name = "cbColor"
-        Me.cbColor.Size = New System.Drawing.Size(103, 33)
-        Me.cbColor.TabIndex = 30
-        '
-        'cbBrightness
-        '
-        Me.cbBrightness.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbBrightness.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbBrightness.FormattingEnabled = True
-        Me.cbBrightness.Items.AddRange(New Object() {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
-        Me.cbBrightness.Location = New System.Drawing.Point(490, 97)
-        Me.cbBrightness.Name = "cbBrightness"
-        Me.cbBrightness.Size = New System.Drawing.Size(103, 33)
-        Me.cbBrightness.TabIndex = 31
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(485, 54)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(120, 29)
-        Me.Label4.TabIndex = 32
-        Me.Label4.Text = "Brightness"
-        '
         'tmrComPort
         '
         Me.tmrComPort.Interval = 5000
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(253, 211)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox1.TabIndex = 34
+        Me.TextBox1.Text = "0"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(253, 254)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox2.TabIndex = 35
+        Me.TextBox2.Text = "0"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(253, 297)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox3.TabIndex = 36
+        Me.TextBox3.Text = "0"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(253, 340)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox4.TabIndex = 37
+        Me.TextBox4.Text = "0"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(412, 211)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox5.TabIndex = 38
+        Me.TextBox5.Text = "0"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(412, 254)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox6.TabIndex = 39
+        Me.TextBox6.Text = "0"
+        '
+        'TextBox7
+        '
+        Me.TextBox7.Location = New System.Drawing.Point(412, 297)
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox7.TabIndex = 40
+        Me.TextBox7.Text = "0"
+        '
+        'TextBox8
+        '
+        Me.TextBox8.Location = New System.Drawing.Point(412, 340)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox8.TabIndex = 41
+        Me.TextBox8.Text = "0"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(312, 179)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(129, 29)
+        Me.Label5.TabIndex = 42
+        Me.Label5.Text = "Strip Length"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(225, 219)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(22, 29)
+        Me.Label6.TabIndex = 43
+        Me.Label6.Text = "1"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(225, 262)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(25, 29)
+        Me.Label7.TabIndex = 44
+        Me.Label7.Text = "2"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(225, 305)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(26, 29)
+        Me.Label8.TabIndex = 45
+        Me.Label8.Text = "3"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(225, 348)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(25, 29)
+        Me.Label9.TabIndex = 46
+        Me.Label9.Text = "4"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(384, 219)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(26, 29)
+        Me.Label10.TabIndex = 47
+        Me.Label10.Text = "5"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(384, 262)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(26, 29)
+        Me.Label11.TabIndex = 48
+        Me.Label11.Text = "6"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(384, 305)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(22, 29)
+        Me.Label12.TabIndex = 49
+        Me.Label12.Text = "7"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(384, 348)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(26, 29)
+        Me.Label13.TabIndex = 50
+        Me.Label13.Text = "8"
+        '
+        'btnTest
+        '
+        Me.btnTest.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTest.Location = New System.Drawing.Point(13, 301)
+        Me.btnTest.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnTest.Name = "btnTest"
+        Me.btnTest.Size = New System.Drawing.Size(188, 76)
+        Me.btnTest.TabIndex = 51
+        Me.btnTest.Text = "Do Test"
+        Me.btnTest.UseVisualStyleBackColor = True
         '
         'MainWindow
         '
@@ -269,4 +483,23 @@ Partial Class MainWindow
     Friend WithEvents Label4 As Label
     Friend WithEvents cbBrightness As ComboBox
     Friend WithEvents tmrComPort As Timer
+    Friend WithEvents btnChannelLength As Button
+    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents btnTest As Button
 End Class

@@ -53,7 +53,7 @@ Public Class DummyBoard
 
     End Sub
 
-    Public Function getBytes() As Byte() Implements BoardInterface.getBytes
+    Public Function getBytes(numberBytes As Integer) As Byte() Implements BoardInterface.getBytes
         Return {1}
     End Function
 End Class

@@ -33,6 +33,6 @@ Public Interface BoardInterface
 
     Sub sendRaw(value As Byte())
 
-    Function getBytes() As Byte()
+    Function getBytes(numberBytes As Integer) As Byte()
 
 End Interface

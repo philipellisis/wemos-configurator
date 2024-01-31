@@ -92,10 +92,11 @@ Public Class MainWindow
 
         Board.sendRaw({82, cbChannel.SelectedIndex * 4, 0, 4, 0})
         Board.sendRaw(outputArray)
-        Board.getBytes()
+        Thread.Sleep(100)
+        Board.getBytes(1)
         Dim CommandData As Byte() = New Byte() {AscW("O"c)}
         Board.sendRaw(CommandData)
-        Board.getBytes()
+        Board.getBytes(1)
         'RemoveHandler Board.BoardChanged, AddressOf Board_BoardChanged
 
         'OutputsWindow = New Outputs(Board)
@@ -299,5 +300,47 @@ Public Class MainWindow
 
 
 
+    End Sub
+
+    Private Sub btnChannelLength_Click(sender As Object, e As EventArgs) Handles btnChannelLength.Click
+
+        Dim textBoxes(8) As TextBox
+        textBoxes(0) = TextBox1
+        textBoxes(1) = TextBox2
+        textBoxes(2) = TextBox3
+        textBoxes(3) = TextBox4
+        textBoxes(4) = TextBox5
+        textBoxes(5) = TextBox6
+        textBoxes(6) = TextBox7
+        textBoxes(7) = TextBox8
+        Dim max As UShort = 0
+        For i As Integer = 0 To 7
+            If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
+        Next
+        Dim result As Byte() = BitConverter.GetBytes(max)
+        Dim CommandData As Byte() = New Byte() {AscW("L"c), result(1), result(0)}
+
+        Board.sendRaw(CommandData)
+        Board.getBytes(1)
+        For i As Integer = 0 To 7
+            'If CUShort(textBoxes(i).Text) > 0 Then
+            Dim result2 As Byte() = BitConverter.GetBytes(CUShort(textBoxes(i).Text))
+
+                CommandData = New Byte() {AscW("Z"c), i, 7, result2(1), result2(0)}
+
+                Board.sendRaw(CommandData)
+                Board.getBytes(1)
+            'End If
+
+        Next
+
+
+    End Sub
+
+
+    Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
+        Dim CommandData As Byte() = New Byte() {AscW("T"c)}
+        Board.sendRaw(CommandData)
+        Board.getBytes(1)
     End Sub
 End Class

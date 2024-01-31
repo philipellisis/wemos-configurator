@@ -20,7 +20,7 @@ Public Class CSDBoard
             'CSDConnection.send({0, 251, 0, 0, 0, 0, 0, 0, 0})
             Dim retryCount = 0
             Do While retryCount < 5
-                Dim result As Byte() = CSDConnection.ReadBytes()
+                Dim result As Byte() = CSDConnection.ReadBytes(0)
                 If result.Length > 0 Then
                     'CSDConnection.ReceiveDataEvents = True
                     Return
@@ -78,8 +78,8 @@ Public Class CSDBoard
     Public Sub sendRaw(value() As Byte) Implements BoardInterface.sendRaw
         CSDConnection.send(value)
     End Sub
-    Public Function getBytes() As Byte() Implements BoardInterface.getBytes
-        Return CSDConnection.ReadBytes()
+    Public Function getBytes(numberBytes As Integer) As Byte() Implements BoardInterface.getBytes
+        Return CSDConnection.ReadBytes(numberBytes)
     End Function
 
 
