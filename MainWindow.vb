@@ -10,6 +10,7 @@ Imports System.IO.Compression
 
 Public Class MainWindow
 
+    Private lengthInitialized = False
     Private currentComPorts = My.Computer.Ports.SerialPortNames
     Private OutputsWindow As Outputs
 
@@ -58,45 +59,77 @@ Public Class MainWindow
             End Try
         End If
 
-
+        lengthInitialized = False
     End Sub
 
     Private Sub btnOutputs_Click(sender As Object, e As EventArgs) Handles btnOutputs.Click
-        Dim outputArray(3071) As Byte
-        Dim brightness As Byte
-        brightness = CInt(cbBrightness.SelectedItem) * 2.55
-
-        If cbColor.SelectedItem = "Red" Then
-            For i As Integer = 0 To 3071 Step 3
-                outputArray(i) = brightness
+        Try
+            If lengthInitialized = False Then
+                setLength()
+            End If
+            Dim textBoxes(8) As TextBox
+            textBoxes(0) = TextBox1
+            textBoxes(1) = TextBox2
+            textBoxes(2) = TextBox3
+            textBoxes(3) = TextBox4
+            textBoxes(4) = TextBox5
+            textBoxes(5) = TextBox6
+            textBoxes(6) = TextBox7
+            textBoxes(7) = TextBox8
+            Dim max As UShort = 0
+            For i As Integer = 0 To 7
+                If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
             Next
-        ElseIf cbColor.SelectedItem = "Green" Then
-            For i As Integer = 1 To 3071 Step 3
-                outputArray(i) = brightness
-            Next
-        ElseIf cbColor.SelectedItem = "Blue" Then
-            For i As Integer = 2 To 3071 Step 3
-                outputArray(i) = brightness
-            Next
-        ElseIf cbColor.SelectedItem = "White" Then
-            For i As Integer = 0 To 3071 Step 1
-                outputArray(i) = brightness
-            Next
-        ElseIf cbColor.SelectedItem = "Off" Then
-            For i As Integer = 0 To 3071 Step 1
-                outputArray(i) = 0
-            Next
-        End If
+            If max <= 0 Then
+                Throw New Exception("LEDs must have some length")
+            End If
 
 
+            Dim numberLEDs = CUShort(textBoxes(cbChannel.SelectedIndex).Text)
 
-        Board.sendRaw({82, cbChannel.SelectedIndex * 4, 0, 4, 0})
-        Board.sendRaw(outputArray)
-        Thread.Sleep(100)
-        Board.getBytes(1)
-        Dim CommandData As Byte() = New Byte() {AscW("O"c)}
-        Board.sendRaw(CommandData)
-        Board.getBytes(1)
+            Dim result As Byte() = BitConverter.GetBytes(numberLEDs)
+
+            Dim result2 As Byte() = BitConverter.GetBytes(max * cbChannel.SelectedIndex)
+
+            Dim outputArray(numberLEDs * 3 - 1) As Byte
+            Dim brightness As Byte
+            brightness = CInt(cbBrightness.SelectedItem) * 2.55
+
+            If cbColor.SelectedItem = "Red" Then
+                For i As Integer = 0 To numberLEDs * 3 - 1 Step 3
+                    outputArray(i) = brightness
+                Next
+            ElseIf cbColor.SelectedItem = "Green" Then
+                For i As Integer = 1 To numberLEDs * 3 - 1 Step 3
+                    outputArray(i) = brightness
+                Next
+            ElseIf cbColor.SelectedItem = "Blue" Then
+                For i As Integer = 2 To numberLEDs * 3 - 1 Step 3
+                    outputArray(i) = brightness
+                Next
+            ElseIf cbColor.SelectedItem = "White" Then
+                For i As Integer = 0 To numberLEDs * 3 - 1 Step 1
+                    outputArray(i) = brightness
+                Next
+            ElseIf cbColor.SelectedItem = "Off" Then
+                For i As Integer = 0 To numberLEDs * 3 - 1 Step 1
+                    outputArray(i) = 0
+                Next
+            End If
+
+
+
+            Board.sendRaw({82, result2(1), result2(0), result(1), result(0)})
+            Board.sendRaw(outputArray)
+            Thread.Sleep(100)
+            Board.getBytes(1)
+            Dim CommandData As Byte() = New Byte() {AscW("O"c)}
+            Board.sendRaw(CommandData)
+            Board.getBytes(1)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
         'RemoveHandler Board.BoardChanged, AddressOf Board_BoardChanged
 
         'OutputsWindow = New Outputs(Board)
@@ -303,38 +336,48 @@ Public Class MainWindow
     End Sub
 
     Private Sub btnChannelLength_Click(sender As Object, e As EventArgs) Handles btnChannelLength.Click
+        setLength()
 
-        Dim textBoxes(8) As TextBox
-        textBoxes(0) = TextBox1
-        textBoxes(1) = TextBox2
-        textBoxes(2) = TextBox3
-        textBoxes(3) = TextBox4
-        textBoxes(4) = TextBox5
-        textBoxes(5) = TextBox6
-        textBoxes(6) = TextBox7
-        textBoxes(7) = TextBox8
-        Dim max As UShort = 0
-        For i As Integer = 0 To 7
-            If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
-        Next
-        Dim result As Byte() = BitConverter.GetBytes(max)
-        Dim CommandData As Byte() = New Byte() {AscW("L"c), result(1), result(0)}
+    End Sub
+    Sub setLength()
+        Try
+            Dim textBoxes(8) As TextBox
+            textBoxes(0) = TextBox1
+            textBoxes(1) = TextBox2
+            textBoxes(2) = TextBox3
+            textBoxes(3) = TextBox4
+            textBoxes(4) = TextBox5
+            textBoxes(5) = TextBox6
+            textBoxes(6) = TextBox7
+            textBoxes(7) = TextBox8
+            Dim max As UShort = 0
+            For i As Integer = 0 To 7
+                If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
+            Next
+            If max <= 0 Then
+                Throw New Exception("LEDs must have some length")
+            End If
+            Dim result As Byte() = BitConverter.GetBytes(max)
+            Dim CommandData As Byte() = New Byte() {AscW("L"c), result(1), result(0)}
 
-        Board.sendRaw(CommandData)
-        Board.getBytes(1)
-        For i As Integer = 0 To 7
-            'If CUShort(textBoxes(i).Text) > 0 Then
-            Dim result2 As Byte() = BitConverter.GetBytes(CUShort(textBoxes(i).Text))
+            Board.sendRaw(CommandData)
+            Board.getBytes(1)
+            For i As Integer = 0 To 7
+                'If CUShort(textBoxes(i).Text) > 0 Then
+                Dim result2 As Byte() = BitConverter.GetBytes(CUShort(textBoxes(i).Text))
 
                 CommandData = New Byte() {AscW("Z"c), i, 7, result2(1), result2(0)}
 
                 Board.sendRaw(CommandData)
                 Board.getBytes(1)
-            'End If
+                'End If
 
-        Next
+            Next
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
 
-
+        lengthInitialized = True
     End Sub
 
 
