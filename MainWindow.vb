@@ -67,7 +67,7 @@ Public Class MainWindow
             If lengthInitialized = False Then
                 setLength()
             End If
-            Dim textBoxes(8) As TextBox
+            Dim textBoxes(10) As TextBox
             textBoxes(0) = TextBox1
             textBoxes(1) = TextBox2
             textBoxes(2) = TextBox3
@@ -76,8 +76,10 @@ Public Class MainWindow
             textBoxes(5) = TextBox6
             textBoxes(6) = TextBox7
             textBoxes(7) = TextBox8
+            textBoxes(8) = TextBox9
+            textBoxes(9) = TextBox10
             Dim max As UShort = 0
-            For i As Integer = 0 To 7
+            For i As Integer = 0 To 9
                 If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
             Next
             If max <= 0 Then
@@ -341,7 +343,7 @@ Public Class MainWindow
     End Sub
     Sub setLength()
         Try
-            Dim textBoxes(8) As TextBox
+            Dim textBoxes(10) As TextBox
             textBoxes(0) = TextBox1
             textBoxes(1) = TextBox2
             textBoxes(2) = TextBox3
@@ -350,8 +352,10 @@ Public Class MainWindow
             textBoxes(5) = TextBox6
             textBoxes(6) = TextBox7
             textBoxes(7) = TextBox8
+            textBoxes(8) = TextBox9
+            textBoxes(9) = TextBox10
             Dim max As UShort = 0
-            For i As Integer = 0 To 7
+            For i As Integer = 0 To 9
                 If CUShort(textBoxes(i).Text) > max Then max = CUShort(textBoxes(i).Text)
             Next
             If max <= 0 Then
@@ -362,7 +366,7 @@ Public Class MainWindow
 
             Board.sendRaw(CommandData)
             Board.getBytes(1)
-            For i As Integer = 0 To 7
+            For i As Integer = 0 To 9
                 'If CUShort(textBoxes(i).Text) > 0 Then
                 Dim result2 As Byte() = BitConverter.GetBytes(CUShort(textBoxes(i).Text))
 

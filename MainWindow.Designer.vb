@@ -60,6 +60,10 @@ Partial Class MainWindow
         Me.cmbVersion = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tmrComPort = New System.Windows.Forms.Timer(Me.components)
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.gbMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -88,6 +92,10 @@ Partial Class MainWindow
         '
         'gbMenu
         '
+        Me.gbMenu.Controls.Add(Me.Label15)
+        Me.gbMenu.Controls.Add(Me.TextBox10)
+        Me.gbMenu.Controls.Add(Me.Label14)
+        Me.gbMenu.Controls.Add(Me.TextBox9)
         Me.gbMenu.Controls.Add(Me.btnTest)
         Me.gbMenu.Controls.Add(Me.Label13)
         Me.gbMenu.Controls.Add(Me.Label12)
@@ -138,7 +146,7 @@ Partial Class MainWindow
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(384, 246)
+        Me.Label13.Location = New System.Drawing.Point(384, 200)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(26, 29)
         Me.Label13.TabIndex = 50
@@ -148,7 +156,7 @@ Partial Class MainWindow
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(384, 203)
+        Me.Label12.Location = New System.Drawing.Point(384, 157)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(22, 29)
         Me.Label12.TabIndex = 49
@@ -158,7 +166,7 @@ Partial Class MainWindow
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(384, 160)
+        Me.Label11.Location = New System.Drawing.Point(384, 114)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(26, 29)
         Me.Label11.TabIndex = 48
@@ -168,7 +176,7 @@ Partial Class MainWindow
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(384, 117)
+        Me.Label10.Location = New System.Drawing.Point(225, 289)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(26, 29)
         Me.Label10.TabIndex = 47
@@ -226,7 +234,7 @@ Partial Class MainWindow
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(412, 238)
+        Me.TextBox8.Location = New System.Drawing.Point(412, 192)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(100, 37)
         Me.TextBox8.TabIndex = 41
@@ -234,7 +242,7 @@ Partial Class MainWindow
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(412, 195)
+        Me.TextBox7.Location = New System.Drawing.Point(412, 149)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(100, 37)
         Me.TextBox7.TabIndex = 40
@@ -242,7 +250,7 @@ Partial Class MainWindow
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(412, 152)
+        Me.TextBox6.Location = New System.Drawing.Point(412, 106)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 37)
         Me.TextBox6.TabIndex = 39
@@ -250,7 +258,7 @@ Partial Class MainWindow
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(412, 109)
+        Me.TextBox5.Location = New System.Drawing.Point(253, 281)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 37)
         Me.TextBox5.TabIndex = 38
@@ -356,7 +364,7 @@ Partial Class MainWindow
         Me.cbChannel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbChannel.Font = New System.Drawing.Font("Impact", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbChannel.FormattingEnabled = True
-        Me.cbChannel.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8"})
+        Me.cbChannel.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"})
         Me.cbChannel.Location = New System.Drawing.Point(220, 370)
         Me.cbChannel.Name = "cbChannel"
         Me.cbChannel.Size = New System.Drawing.Size(103, 33)
@@ -442,6 +450,42 @@ Partial Class MainWindow
         '
         Me.tmrComPort.Interval = 5000
         '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(384, 243)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(26, 29)
+        Me.Label14.TabIndex = 53
+        Me.Label14.Text = "9"
+        '
+        'TextBox9
+        '
+        Me.TextBox9.Location = New System.Drawing.Point(412, 235)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox9.TabIndex = 52
+        Me.TextBox9.Text = "0"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Impact", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(374, 285)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(35, 29)
+        Me.Label15.TabIndex = 55
+        Me.Label15.Text = "10"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.Location = New System.Drawing.Point(412, 278)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(100, 37)
+        Me.TextBox10.TabIndex = 54
+        Me.TextBox10.Text = "0"
+        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -502,4 +546,8 @@ Partial Class MainWindow
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents btnTest As Button
+    Friend WithEvents Label15 As Label
+    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TextBox9 As TextBox
 End Class
